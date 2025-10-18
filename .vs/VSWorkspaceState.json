@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\softtech",
+    "\\src\\main\\java\\softtech\\server",
+    "\\src\\main\\java\\softtech\\server\\repositories",
+    "\\src\\main\\java\\softtech\\server\\services",
+    "\\src\\main\\java\\softtech\\server\\utils",
+    "\\src\\main\\resources"
+  ],
+  "SelectedNode": "\\src\\main\\java\\softtech\\server\\enums",
+  "PreviewInSolutionExplorer": false
+}
