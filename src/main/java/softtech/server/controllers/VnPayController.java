@@ -3,6 +3,7 @@ package softtech.server.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,9 @@ public class VnPayController {
 
     @Autowired
     private VnPayService vnPayService;
+    
+    @Value("${cors.allowed-origins.s}")
+    private String url;
 
     @PostMapping("/createPay")
     public ResponseEntity<?> createPayment(
@@ -35,7 +39,7 @@ public class VnPayController {
     public void paymentCallback(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             int paymentStatus = vnPayService.orderReturn(request);
-            String frontendUrl = "http://localhost:3000";
+            String frontendUrl = "url";
 
             String vnpResponseCode = request.getParameter("vnp_ResponseCode");
             String vnpTxnRef = request.getParameter("vnp_TxnRef");
@@ -84,7 +88,7 @@ public class VnPayController {
             response.sendRedirect(redirectUrl.toString());
 
         } catch (Exception e) {
-            response.sendRedirect("http://localhost:3000/payment-result?success=false&message=" +
+            response.sendRedirect(url+"/payment-result?success=false&message=" +
                     URLEncoder.encode("Lỗi hệ thống: " + e.getMessage(), "UTF-8"));
         }
     }
