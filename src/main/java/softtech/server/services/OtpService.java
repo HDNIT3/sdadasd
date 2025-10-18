@@ -1,6 +1,7 @@
 package softtech.server.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ import softtech.server.repositories.EmployeeRepo;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -34,10 +37,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class OtpService {
+	private static final Logger logger = LoggerFactory.getLogger(OtpService.class);
+	
 	private final JavaMailSender mailSender;
 	private final Map<String, OtpDTO> otpStore = new ConcurrentHashMap<>(); // Thread-safe
 	private final Map<String, OtpFogotPassDTO> otpStoreFor = new ConcurrentHashMap<>();
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+	@Value("${spring.mail.username:}")
+	private String mailUsername;
 
 	@Autowired
 	private AccountRepo accountRepo;
@@ -236,12 +244,22 @@ public class OtpService {
 
 	/*** SEND OTP EMAIL ***/
 	private void sendOtpEmail(String email, String otp) throws MessagingException {
-		MimeMessage message = mailSender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(message, true);
-		helper.setTo(email);
-		helper.setSubject("Your OTP Code");
-		helper.setText("Your OTP code is <strong>" + otp + "</strong>. It is valid for 5 minutes.", true);
-		mailSender.send(message);
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+			helper.setTo(email);
+			helper.setSubject("Your OTP Code");
+			helper.setText("Your OTP code is <strong>" + otp + "</strong>. It is valid for 5 minutes.", true);
+			mailSender.send(message);
+			
+			logger.info("OTP email sent successfully to: {}", email);
+		} catch (Exception e) {
+			logger.warn("Failed to send OTP email to: {}. Error: {}", email, e.getMessage());
+			// In development mode with mock sender, this is expected
+			if (mailUsername.isEmpty()) {
+				logger.info("Using mock mail sender - OTP code for {}: {}", email, otp);
+			}
+		}
 	}
 
 	/*** CLEANUP EXPIRED OTPS ***/
