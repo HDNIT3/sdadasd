@@ -21,7 +21,7 @@ import softtech.server.services.BillService;
 
 @RestController
 @RequestMapping("/api/transactions")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 public class BillController {
     @Autowired
     private BillService billService;

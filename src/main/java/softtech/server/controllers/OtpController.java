@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/otp")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 public class OtpController {
 
     @Autowired

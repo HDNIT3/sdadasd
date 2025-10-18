@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/seats")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 @RequiredArgsConstructor
 public class SeatController {
 

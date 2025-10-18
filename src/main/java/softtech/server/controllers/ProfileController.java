@@ -19,7 +19,7 @@ import softtech.server.dto.ProfileDTO.RecommendationResponseDTO;
 
 @RestController
 @RequestMapping("/api/profiles")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 @RequiredArgsConstructor
 public class ProfileController {
 

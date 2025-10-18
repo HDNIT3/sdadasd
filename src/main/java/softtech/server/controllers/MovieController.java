@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/movies")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 public class MovieController {
 
     @Autowired

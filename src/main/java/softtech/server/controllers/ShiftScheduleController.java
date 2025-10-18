@@ -22,7 +22,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/shifts")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 @RequiredArgsConstructor
 public class ShiftScheduleController {
     private final ShiftScheduleService shiftScheduleService;

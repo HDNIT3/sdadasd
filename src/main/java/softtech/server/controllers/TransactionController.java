@@ -18,7 +18,7 @@ import softtech.server.services.TransactionService;
 
 @RestController
 @RequestMapping("/api/Transactions")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 public class TransactionController {
 	@Autowired
 	private TransactionService transactionService;

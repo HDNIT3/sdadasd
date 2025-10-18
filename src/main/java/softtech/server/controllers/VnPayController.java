@@ -15,7 +15,7 @@ import softtech.server.services.VnPayService;
 
 @RestController
 @RequestMapping("/api/payment")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 public class VnPayController {
 
     @Autowired

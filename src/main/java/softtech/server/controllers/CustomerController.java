@@ -20,6 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customers")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 @RequiredArgsConstructor
 public class CustomerController {
 	private final CustomerRepo customerRepo;

@@ -14,7 +14,7 @@ import softtech.server.dto.AuthDTO.MesDTO;
 
 @RestController
 @RequestMapping("/api/support-messages")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 public class SupportMessageController {
 	private List<MesDTO> messages = new ArrayList<>();
 	

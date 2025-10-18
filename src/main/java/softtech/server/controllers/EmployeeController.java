@@ -12,7 +12,7 @@ import softtech.server.services.EmployeeService;
 
 @RestController
 @RequestMapping("/api/employees")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://zzzzz-production.up.railway.app")
 public class EmployeeController {
 
     @Autowired

@@ -19,7 +19,7 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     
-    @Value("${cors.allowed-origins:http://localhost:3000}")
+    @Value("${cors.allowed-origins:https://zzzzz-production.up.railway.app}")
     private String allowedOrigins;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthFilter) {
@@ -41,7 +41,8 @@ public class SecurityConfig {
                     "/api/payment/**",
                     "/api/support-messages/**",
                     "/ws/**",
-                    "/actuator/**"
+                    "/actuator/**",
+                    "/api/**"
                 ).permitAll()
 
                 // Events: GET public, CRUD yêu cầu role
